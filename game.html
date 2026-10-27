@@ -90,21 +90,80 @@ button:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
 .log td.dim { color: var(--ink-dim); }
 /* the catch card sits low so the fish stays in view above it */
 #catch { align-items: flex-end; background: linear-gradient(rgba(8, 12, 10, 0), rgba(8, 12, 10, 0.6) 55%); }
+/* ---- menus, shop, tasks, dex ---- */
+#bar .grp { display: flex; gap: 8px; align-items: center; }
+#bar .chip { font-size: 16px; padding: 8px 12px; white-space: nowrap; }
+#bar .grp { gap: 6px; min-width: 0; }
+.coin { width: 14px; height: 14px; border-radius: 50%; display: inline-block; background: radial-gradient(circle at 35% 35%, #ffe7a3, #d99a2b 70%); box-shadow: inset 0 0 0 2px #b07a1c; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--danger); display: inline-block; margin-left: 4px; box-shadow: 0 0 0 2px rgba(0,0,0,0.3); }
+#timer.low b { color: var(--danger); }
+#toast { position: fixed; left: 50%; top: calc(env(safe-area-inset-top, 0px) + 64px); transform: translateX(-50%); pointer-events: none; opacity: 0;
+  background: var(--glass); border: 1px solid rgba(226, 178, 90, 0.5); color: var(--ink); border-radius: 999px; padding: 8px 18px; font-size: 17px; white-space: nowrap;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+#toast.show { animation: toastA 1.5s ease forwards; }
+@keyframes toastA { 0% { opacity: 0; transform: translate(-50%, 10px); } 12% { opacity: 1; transform: translate(-50%, 0); } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -10px); } }
+.stam { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 13px; color: var(--ink-dim); }
+.stam div { flex: 1; height: 7px; border-radius: 4px; background: rgba(0, 0, 0, 0.45); overflow: hidden; }
+.stam i { display: block; height: 100%; width: 100%; background: #82b4dc; transition: width 0.2s; }
+.prof { display: flex; justify-content: space-between; align-items: center; font-size: 16px; color: var(--ink-dim); margin: 12px 0 6px; }
+.prof b, b.gold { color: var(--brass); }
+.xp { height: 8px; background: rgba(0, 0, 0, 0.35); border-radius: 4px; overflow: hidden; }
+.xp i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #c8913a, #f0cf86); }
+.spots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 16px 0 14px; }
+.spot { min-height: 64px; border-radius: 14px; border: 2px solid rgba(244, 239, 228, 0.15); background: rgba(0, 0, 0, 0.25); color: var(--ink); font-size: 18px; cursor: pointer; padding: 6px 4px; }
+.spot small { display: block; font-size: 12px; color: var(--ink-dim); margin-top: 2px; }
+.spot.on { border-color: var(--brass); background: rgba(226, 178, 90, 0.16); }
+.spot:disabled { opacity: 0.45; cursor: default; }
+.big { display: flex; flex-direction: column; gap: 10px; }
+.big button { min-height: 64px; border-radius: 16px; border: 0; font-size: 21px; font-weight: 700; cursor: pointer; }
+.big button small, .wide small { display: block; font-size: 13px; font-weight: 400; opacity: 0.8; margin-top: 2px; }
+.menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+.menu-grid button { min-height: 56px; border-radius: 14px; font-size: 17px; font-weight: 600; cursor: pointer; }
+.how-d summary { cursor: pointer; color: var(--ink-dim); font-size: 16px; margin-top: 14px; text-align: center; }
+.wide { width: 100%; min-height: 58px; margin-top: 12px; border-radius: 16px; font-size: 18px; font-weight: 600; cursor: pointer; }
+.center { text-align: center; }
+.sec { font-size: 17px; color: var(--brass); margin: 16px 0 2px; font-weight: 600; }
+.row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(244, 239, 228, 0.08); }
+.row .nm { flex: 1; font-size: 17px; min-width: 0; }
+.row .nm small { display: block; font-size: 13px; color: var(--ink-dim); margin-top: 2px; }
+.row .nm .xp { margin-top: 6px; height: 6px; }
+.row button { min-width: 88px; min-height: 46px; border-radius: 12px; border: 0; font-size: 16px; font-weight: 700; cursor: pointer; padding: 0 10px; }
+.row button:disabled { opacity: 0.45; cursor: default; }
+.bait:disabled { opacity: 0.45; }
+.stars { text-align: center; color: var(--brass); font-size: 20px; letter-spacing: 3px; margin-bottom: 2px; }
+.reward { text-align: center; color: var(--brass); font-size: 16px; min-height: 1.2em; }
+#catch .btns button { font-size: 18px; }
+.badge.new { background: #3f8f5a; }
+.card.gold { border-color: #ffd36a; box-shadow: 0 0 50px rgba(255, 200, 80, 0.35), 0 20px 60px rgba(0, 0, 0, 0.5); }
+.card.gold h2 { color: #ffd36a; }
+.dex { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
+.dexi { background: rgba(0, 0, 0, 0.28); border-radius: 14px; padding: 10px 12px; font-size: 14px; color: var(--ink-dim); line-height: 1.45; }
+.dexi b { display: flex; align-items: center; gap: 6px; font-size: 18px; color: var(--ink); font-weight: 600; }
+.dexi b i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; }
+.dexi.unk b { color: var(--ink-dim); }
+.dexi .tag { color: var(--brass); font-size: 12px; font-weight: 400; }
 @media (prefers-reduced-motion: reduce) { #main.alert { animation: none; } }
 </style>
 
 <canvas id="view"></canvas>
 
 <div id="bar">
-  <button class="chip" id="btn-bait" type="button">鱼饵 <b id="bait-name">蚯蚓</b></button>
-  <div class="chip">渔获 <b id="count">0</b> 条</div>
-  <button class="chip" id="btn-log" type="button">鱼护</button>
+  <div class="grp">
+    <button class="chip" id="btn-menu" type="button">菜单<span class="dot" id="menu-dot" hidden></span></button>
+    <button class="chip" id="btn-bait" type="button">饵 <b id="bait-name">蚯蚓</b></button>
+  </div>
+  <div class="grp">
+    <div class="chip" id="timer" hidden><b id="time">3:00</b></div>
+    <div class="chip"><i class="coin"></i><b id="coins">0</b></div>
+  </div>
 </div>
 <div id="msg"></div>
+<div id="toast"></div>
 <div id="controls">
   <div id="meter">
     <div class="lbl"><span id="meter-left">力度</span><span id="meter-right"></span></div>
     <div class="track"><div class="zone" id="zone"></div><div class="fill" id="fill"></div></div>
+    <div class="stam" id="stamw" hidden><span>鱼的体力</span><div><i id="stam"></i></div></div>
   </div>
   <button id="main" type="button">按住 抛竿</button>
   <div id="hint">左右滑动屏幕可以转向，按住按钮蓄力，松手抛出去</div>
@@ -113,29 +172,44 @@ button:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
 <div class="panel" id="start">
   <div class="card">
     <h1>静湖垂钓</h1>
-    <p style="text-align:center">傍晚的湖边，风很轻。挑个鱼饵，甩一竿。</p>
-    <div class="how">
-      <b>抛竿</b><span>按住大按钮蓄力，松手抛出。左右滑动屏幕换方向。</span>
-      <b>等口</b><span>浮漂轻轻点两下是试口，别急；整个被拖下水才是真咬钩。</span>
-      <b>提竿</b><span>按钮变红、手机一震，马上点一下。</span>
-      <b>遛鱼</b><span>按住收线，松手放线。线的拉力保持在绿色区间里，鱼没劲了就拉上来了。</span>
+    <div class="prof"><span id="p-lv">1 级 · 新手钓客</span><span>金币 <b id="p-coins">0</b></span></div>
+    <div class="xp"><i id="p-xp"></i></div>
+    <div class="spots" id="spots"></div>
+    <div class="big">
+      <button class="btn-gold" id="btn-start" type="button">休闲垂钓<small>慢慢钓，钓到的鱼能换金币</small></button>
+      <button class="btn-ghost" id="btn-timed" type="button">限时赛 · 3 分钟<small id="timed-best">比谁钓得重</small></button>
     </div>
-    <button class="btn-gold" id="btn-start" type="button">开始钓鱼</button>
+    <div class="menu-grid">
+      <button class="btn-ghost" id="btn-tasks" type="button">今日任务<span class="dot" id="task-dot" hidden></span></button>
+      <button class="btn-ghost" id="btn-shop" type="button">渔具店</button>
+      <button class="btn-ghost" id="btn-log" type="button">图鉴</button>
+    </div>
+    <details class="how-d" id="howd"><summary>怎么玩</summary>
+      <div class="how">
+        <b>抛竿</b><span>按住大按钮蓄力，松手抛出。左右滑动屏幕换方向。</span>
+        <b>等口</b><span>浮漂轻轻点两下是试口，别急；整个被拖下水才是真咬钩。</span>
+        <b>提竿</b><span>按钮变红、手机一震，马上点一下。点得快是「完美提竿」，鱼更好遛、金币更多。</span>
+        <b>遛鱼</b><span>按住收线，松手放线。拉力保持在绿色区间；鱼跳出水面时一定要松手。</span>
+        <b>升级</b><span>卖鱼攒金币，去渔具店换好竿好线，买特饵和窝料。等级高了能去清晨和月夜钓点。</span>
+      </div>
+    </details>
   </div>
 </div>
 
 <div class="panel" id="catch" hidden>
-  <div class="card">
+  <div class="card" id="catch-card">
     <div class="rare" id="c-rare"></div>
     <h2 id="c-name">鲫鱼</h2>
+    <div class="stars" id="c-stars"></div>
     <div class="stats">
       <div class="stat"><span>重量</span><b id="c-weight">0.00 斤</b></div>
       <div class="stat"><span>体长</span><b id="c-length">0 厘米</b></div>
     </div>
     <p id="c-note"></p>
+    <div class="reward" id="c-reward"></div>
     <div class="btns">
       <button class="btn-ghost" id="btn-release" type="button">放生</button>
-      <button class="btn-gold" id="btn-keep" type="button">放进鱼护</button>
+      <button class="btn-gold" id="btn-keep" type="button">收下</button>
     </div>
   </div>
 </div>
@@ -143,18 +217,55 @@ button:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
 <div class="panel" id="baits" hidden>
   <div class="card">
     <h2>换鱼饵</h2>
-    <p>不同的鱼爱吃不同的饵。</p>
+    <p>不同的鱼爱吃不同的饵。特饵每竿用掉一个。</p>
     <div class="baits" id="bait-list"></div>
+    <button class="btn-ghost wide" id="btn-chum" type="button">撒一把窝料</button>
     <div class="btns"><button class="btn-gold" id="btn-bait-ok" type="button">好了</button></div>
   </div>
 </div>
 
 <div class="panel" id="logp" hidden>
   <div class="card">
-    <h2>鱼护</h2>
+    <h2>图鉴</h2>
     <p id="log-sum"></p>
-    <table class="log"><thead><tr><th>鱼</th><th>条数</th><th>最大</th></tr></thead><tbody id="log-body"></tbody></table>
-    <div class="btns"><button class="btn-gold" id="btn-log-ok" type="button">回去钓鱼</button></div>
+    <div class="dex" id="dex"></div>
+    <div class="btns"><button class="btn-gold" id="btn-log-ok" type="button">返回</button></div>
+  </div>
+</div>
+
+<div class="panel" id="shop" hidden>
+  <div class="card">
+    <h2>渔具店</h2>
+    <p class="center">你有金币 <b class="gold" id="s-coins">0</b></p>
+    <div id="shop-list"></div>
+    <div class="btns"><button class="btn-gold" id="btn-shop-ok" type="button">返回</button></div>
+  </div>
+</div>
+
+<div class="panel" id="tasks" hidden>
+  <div class="card">
+    <h2>今日任务</h2>
+    <p class="center">每天换一批，做完领金币。</p>
+    <div id="task-list"></div>
+    <div class="btns"><button class="btn-gold" id="btn-tasks-ok" type="button">返回</button></div>
+  </div>
+</div>
+
+<div class="panel" id="over" hidden>
+  <div class="card">
+    <div class="rare" id="o-rec"></div>
+    <h2>时间到</h2>
+    <div class="stats">
+      <div class="stat"><span>总重量</span><b id="o-kg">0 斤</b></div>
+      <div class="stat"><span>条数</span><b id="o-n">0</b></div>
+      <div class="stat"><span>最大一条</span><b id="o-max">—</b></div>
+      <div class="stat"><span>最好成绩</span><b id="o-best">—</b></div>
+    </div>
+    <div class="reward" id="o-reward"></div>
+    <div class="btns">
+      <button class="btn-ghost" id="btn-over-menu" type="button">回菜单</button>
+      <button class="btn-gold" id="btn-over-again" type="button">再来一局</button>
+    </div>
   </div>
 </div>
 
@@ -163,30 +274,58 @@ button:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
 import * as THREE from 'three';
 
 // ============================================================ data =========
-// weights in kg; shown to the player in 斤 (1 斤 = 0.5 kg), lengths in cm
+// weights in kg; shown to the player in 斤 (1 斤 = 0.5 kg), lengths in cm.
+// p = price in coins per 斤; t = how common at each spot (default 1); bait = how much it likes each bait.
 const FISH = [
-  { id: 'jiyu',   name: '鲫鱼',   w: [0.08, 0.7],  k: 0.017,  pull: 0.35, bait: { worm: 5, dough: 5, corn: 2, shrimp: 1 }, color: ['#4d5a4a', '#b9b49a', '#e8e2c8'], body: 'deep' },
-  { id: 'liyu',   name: '鲤鱼',   w: [0.6, 7],     k: 0.0145, pull: 0.75, bait: { worm: 2, dough: 4, corn: 5, shrimp: 1 }, color: ['#6a5530', '#c39a4e', '#efd9a3'], body: 'carp', fins: '#b8522e' },
-  { id: 'caoyu',  name: '草鱼',   w: [0.8, 9],     k: 0.011,  pull: 0.8,  bait: { worm: 1, dough: 2, corn: 4, shrimp: 0 }, color: ['#4f5a3c', '#a8a27a', '#e6e0c4'], body: 'long' },
-  { id: 'lianyu', name: '鲢鱼',   w: [0.8, 7],     k: 0.012,  pull: 0.7,  bait: { worm: 0, dough: 4, corn: 1, shrimp: 0 }, color: ['#5d6b72', '#c7ccc9', '#f2f2ec'], body: 'long' },
-  { id: 'bianyu', name: '鳊鱼',   w: [0.25, 1.4],  k: 0.02,   pull: 0.4,  bait: { worm: 3, dough: 3, corn: 1, shrimp: 1 }, color: ['#596257', '#c8c9bd', '#f0efe6'], body: 'flat' },
-  { id: 'luofei', name: '罗非鱼', w: [0.25, 1.6],  k: 0.019,  pull: 0.5,  bait: { worm: 4, dough: 2, corn: 1, shrimp: 2 }, color: ['#3f4a48', '#7d8a86', '#c9cfc6'], body: 'deep', stripes: 'rgba(30,36,34,0.35)' },
-  { id: 'qiaozui', name: '翘嘴', w: [0.4, 3.5],   k: 0.009,  pull: 0.85, bait: { worm: 1, dough: 0, corn: 0, shrimp: 4 }, color: ['#5a6670', '#d4d8d6', '#f7f7f3'], body: 'slim' },
-  { id: 'heiyu',  name: '黑鱼',   w: [0.8, 5],     k: 0.0095, pull: 1.0,  bait: { worm: 1, dough: 0, corn: 0, shrimp: 3 }, color: ['#2b2a24', '#5c5848', '#bdb6a0'], body: 'snake', blotch: 'rgba(15,14,10,0.6)' },
-  { id: 'guiyu',  name: '鳜鱼',   w: [0.3, 2.5],   k: 0.016,  pull: 0.9,  bait: { worm: 0, dough: 0, corn: 0, shrimp: 2 }, color: ['#5b5a2e', '#b5a45e', '#ece2b2'], body: 'deep', spots: 'rgba(40,30,10,0.65)', rare: true },
-  { id: 'qingyu', name: '青鱼',   w: [4, 18],      k: 0.0105, pull: 1.25, bait: { worm: 0, dough: 0, corn: 1, shrimp: 1 }, color: ['#1f2a2e', '#3f4c50', '#a9b0ac'], body: 'long', rare: true },
+  { id: 'jiyu',   name: '鲫鱼',   w: [0.08, 0.7],  k: 0.017,  pull: 0.35, p: 30, bait: { worm: 5, dough: 5, corn: 2, shrimp: 1, wine: 4, pupa: 2 }, t: { dawn: 1.5 }, color: ['#4d5a4a', '#b9b49a', '#e8e2c8'], body: 'deep' },
+  { id: 'liyu',   name: '鲤鱼',   w: [0.6, 7],     k: 0.0145, pull: 0.75, p: 16, bait: { worm: 2, dough: 4, corn: 5, shrimp: 1, wine: 6, pupa: 3 }, color: ['#6a5530', '#c39a4e', '#efd9a3'], body: 'carp', fins: '#b8522e' },
+  { id: 'caoyu',  name: '草鱼',   w: [0.8, 9],     k: 0.011,  pull: 0.8,  p: 14, bait: { worm: 1, dough: 2, corn: 4, wine: 3 }, t: { dawn: 1.4 }, color: ['#4f5a3c', '#a8a27a', '#e6e0c4'], body: 'long' },
+  { id: 'lianyu', name: '鲢鱼',   w: [0.8, 7],     k: 0.012,  pull: 0.7,  p: 10, bait: { dough: 4, corn: 1, wine: 3 }, color: ['#5d6b72', '#c7ccc9', '#f2f2ec'], body: 'long' },
+  { id: 'bianyu', name: '鳊鱼',   w: [0.25, 1.4],  k: 0.02,   pull: 0.4,  p: 24, bait: { worm: 3, dough: 3, corn: 1, shrimp: 1, wine: 3, pupa: 2 }, t: { dawn: 1.3 }, color: ['#596257', '#c8c9bd', '#f0efe6'], body: 'flat' },
+  { id: 'luofei', name: '罗非鱼', w: [0.25, 1.6],  k: 0.019,  pull: 0.5,  p: 12, bait: { worm: 4, dough: 2, corn: 1, shrimp: 2, pupa: 2, loach: 1 }, color: ['#3f4a48', '#7d8a86', '#c9cfc6'], body: 'deep', stripes: 'rgba(30,36,34,0.35)' },
+  { id: 'qiaozui', name: '翘嘴', w: [0.4, 3.5],   k: 0.009,  pull: 0.85, p: 40, bait: { worm: 1, shrimp: 4, loach: 4, pupa: 1 }, t: { dawn: 1.3, night: 0.7 }, color: ['#5a6670', '#d4d8d6', '#f7f7f3'], body: 'slim' },
+  { id: 'heiyu',  name: '黑鱼',   w: [0.8, 5],     k: 0.0095, pull: 1.0,  p: 36, bait: { worm: 1, shrimp: 3, loach: 5 }, t: { night: 2 }, color: ['#2b2a24', '#5c5848', '#bdb6a0'], body: 'snake', blotch: 'rgba(15,14,10,0.6)' },
+  { id: 'nianyu', name: '鲶鱼',   w: [0.5, 8],     k: 0.0075, pull: 0.9,  p: 22, bait: { worm: 3, shrimp: 2, loach: 4 }, t: { dusk: 0.3, dawn: 0.1, night: 3 }, color: ['#2f2a24', '#6a604e', '#d8d0b8'], body: 'cat', blotch: 'rgba(20,18,12,0.45)', whisk: true, hint: '夜里出来觅食，爱吃蚯蚓和泥鳅' },
+  { id: 'guiyu',  name: '鳜鱼',   w: [0.3, 2.5],   k: 0.016,  pull: 0.9,  p: 90, bait: { shrimp: 2, loach: 4, pupa: 1 }, t: { night: 2.5 }, color: ['#5b5a2e', '#b5a45e', '#ece2b2'], body: 'deep', spots: 'rgba(40,30,10,0.65)', rare: true, hint: '只吃活食，用活虾或泥鳅，夜里更多' },
+  { id: 'qingyu', name: '青鱼',   w: [4, 18],      k: 0.0105, pull: 1.25, p: 30, bait: { corn: 1, shrimp: 1, pupa: 3, wine: 1 }, t: { night: 1.5 }, color: ['#1f2a2e', '#3f4c50', '#a9b0ac'], body: 'long', rare: true, hint: '水底的大家伙，蚕蛹最好使' },
+  { id: 'jinli',  name: '金鲤',   w: [3, 12],      k: 0.0145, pull: 1.25, p: 260, bait: { corn: 1, dough: 1, wine: 3 }, t: { night: 0.3 }, color: ['#b0601a', '#f5b330', '#fff0b0'], body: 'carp', fins: '#ff7a2a', legend: true, glow: 0.5, hint: '传说黄昏和清晨偶尔现身，爱吃酒米。得配好竿好线' },
+  { id: 'yueguang', name: '月光鳜', w: [1, 4],     k: 0.016,  pull: 1.15, p: 320, bait: { shrimp: 1, loach: 3 }, t: { dusk: 0, dawn: 0, night: 1 }, color: ['#3d4f6e', '#a9c3e8', '#eef6ff'], body: 'deep', spots: 'rgba(30,50,90,0.5)', legend: true, glow: 0.6, hint: '只在月夜出现的传说之鱼，用活泥鳅' },
 ];
 const BAITS = [
   { id: 'worm', name: '蚯蚓', note: '鲫鱼、罗非、鳊鱼爱吃' },
   { id: 'dough', name: '面饵', note: '鲫鱼、鲤鱼、鲢鱼' },
   { id: 'corn', name: '玉米', note: '鲤鱼、草鱼，偶尔青鱼' },
   { id: 'shrimp', name: '活虾', note: '翘嘴、黑鱼、鳜鱼' },
+  { id: 'wine', name: '酒米', note: '鲤鲫最爱，大鱼多', price: 20, prem: true, size: 1.35 },
+  { id: 'pupa', name: '蚕蛹', note: '稀有鱼更容易上钩', price: 35, prem: true, rare: 3 },
+  { id: 'loach', name: '活泥鳅', note: '黑鱼鳜鱼鲶鱼，猛鱼专用', price: 45, prem: true, size: 1.2 },
+];
+const RODS = [
+  { name: '竹竿', note: '老伙计，够用', price: 0, power: 1, reel: 1, col: 0x9a7a44, metal: 0.05 },
+  { name: '玻璃钢竿', note: '收线快一些，鱼劲小一些', price: 400, power: 1.15, reel: 1.15, col: 0x2c4d6e, metal: 0.3 },
+  { name: '碳素竿', note: '又轻又硬，扛得住大鱼', price: 1500, power: 1.32, reel: 1.3, col: 0x1c1c20, metal: 0.4 },
+  { name: '龙纹金竿', note: '传说鱼也不在话下', price: 5000, power: 1.55, reel: 1.5, col: 0xc99a3a, metal: 0.85 },
+];
+const LINES = [
+  { name: '1 号线', note: '细线，大鱼容易崩', price: 0, max: 1.0 },
+  { name: '2 号线', note: '更结实一点', price: 250, max: 1.08 },
+  { name: '3 号线', note: '遛大鱼放心多了', price: 900, max: 1.16 },
+  { name: '大力马 5 号', note: '几乎拉不断', price: 3000, max: 1.26 },
+];
+const CHUM = { name: '打窝料', note: '一包管 5 竿：鱼来得快、个头大', price: 30 };
+const JUNK = [
+  { id: 'boot', name: '旧胶鞋', kg: 0.6, note: '哈哈，不知道谁的鞋掉湖里了。', c: [0, 0], w: 5 },
+  { id: 'bottle', name: '漂流瓶', kg: 0.4, note: '瓶里卷着张纸条：「祝你今天鱼获满满」，还塞了几枚金币。', c: [60, 200], w: 4 },
+  { id: 'chest', name: '小宝箱', kg: 3, note: '沉在湖底的木箱子，打开一看，亮闪闪的！', c: [400, 900], w: 1.2 },
 ];
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
 };
-const save = store.get('jinghu-save', { bait: 'worm', log: {} });
+const SAVE_KEY = 'jinghu-save';
+const save = Object.assign({ bait: 'worm', log: {}, coins: 0, xp: 0, rod: 0, line: 0, rods: [0], lines: [0], spot: 'dusk', daily: null, best: 0, luck: 0, streak: 0 }, store.get(SAVE_KEY, {}));
+save.inv = Object.assign({ wine: 0, pupa: 0, loach: 0, chum: 0 }, save.inv || {});
+if (!BAITS.some((b) => b.id === save.bait)) save.bait = 'worm';
 
 // ============================================================ renderer =====
 const canvas = document.getElementById('view');
@@ -207,7 +346,7 @@ const SUN_COL = new THREE.Color(1.0, 0.82, 0.58);
 const HORIZON = new THREE.Color(0.97, 0.78, 0.6);
 const ZENITH = new THREE.Color(0.2, 0.38, 0.7);
 scene.fog = new THREE.Fog(HORIZON.clone().multiplyScalar(0.85), 220, 1100);
-scene.add(new THREE.HemisphereLight(0xcfe0ff, 0x4a4a32, 1.1));
+const hemi = new THREE.HemisphereLight(0xcfe0ff, 0x4a4a32, 1.1); scene.add(hemi);
 const sun = new THREE.DirectionalLight(0xffd6a0, 2.4); sun.position.copy(SUN_DIR).multiplyScalar(100); scene.add(sun);
 
 const GLSL_NOISE = `
@@ -217,7 +356,7 @@ const GLSL_NOISE = `
   float fbm(vec2 p){ float v = 0.0, a = 0.5; for (int i = 0; i < 5; i++){ v += a*noise(p); p *= 2.03; a *= 0.5; } return v; }
 `;
 const GLSL_SKY = `
-  uniform vec3 uSun, uSunCol, uHor, uZen;
+  uniform vec3 uSun, uSunCol, uHor, uZen; uniform float uNight;
   vec3 skyCol(vec3 d){
     float h = clamp(d.y, -0.2, 1.0);
     vec3 c = mix(uHor, uZen, pow(clamp(h, 0.0, 1.0), 0.55));
@@ -227,7 +366,7 @@ const GLSL_SKY = `
     return c;
   }
 `;
-const skyUniforms = { uSun: { value: SUN_DIR }, uSunCol: { value: SUN_COL }, uHor: { value: HORIZON }, uZen: { value: ZENITH }, uTime: { value: 0 } };
+const skyUniforms = { uSun: { value: SUN_DIR }, uSunCol: { value: SUN_COL }, uHor: { value: HORIZON }, uZen: { value: ZENITH }, uTime: { value: 0 }, uNight: { value: 0 } };
 
 // ---- sky dome with soft clouds -------------------------------------------------
 {
@@ -239,7 +378,10 @@ const skyUniforms = { uSun: { value: SUN_DIR }, uSunCol: { value: SUN_COL }, uHo
         if (d.y > 0.0){ vec2 uv = d.xz / (d.y + 0.15) * 1.6 + vec2(uTime * 0.004, 0.0);
           float cl = smoothstep(0.52, 0.85, fbm(uv)) * smoothstep(0.0, 0.25, d.y);
           vec3 cc = mix(vec3(1.0, 0.9, 0.82), uSunCol * 1.25, pow(max(dot(d, uSun), 0.0), 3.0));
-          c = mix(c, cc, cl * 0.75); }
+          c = mix(c, cc * (1.0 - 0.88 * uNight), cl * (0.75 - 0.3 * uNight));
+          vec2 sq = vec2(atan(d.z, d.x) * 2.0, asin(clamp(d.y, 0.0, 1.0)) * 2.0) * 120.0; float hs = hash(floor(sq));
+          if (hs > 0.982) { vec2 f = fract(sq) - 0.5; float tw = 0.55 + 0.45 * sin(uTime * 2.3 + hs * 97.0);
+            c += vec3(0.85, 0.92, 1.0) * smoothstep(0.32, 0.0, length(f)) * tw * uNight * smoothstep(0.03, 0.25, d.y) * (1.0 - cl) * (hs - 0.982) * 90.0; } }
         gl_FragColor = vec4(c, 1.0);
         #include <tonemapping_fragment>
         #include <colorspace_fragment>
@@ -393,10 +535,10 @@ const water = new THREE.Mesh(new THREE.PlaneGeometry(1800, 1800, 1, 1).rotateX(-
       vec3 refl = skyCol(R);
       // the wooded shore reflected along the horizon
       float shore = 1.0 - smoothstep(0.015, 0.09, R.y);
-      refl = mix(refl, vec3(0.08, 0.12, 0.07) + uSunCol * 0.04, shore * 0.85);
+      refl = mix(refl, (vec3(0.08, 0.12, 0.07) + uSunCol * 0.04) * (1.0 - 0.8 * uNight), shore * 0.85);
       float fres = 0.02 + 0.98 * pow(1.0 - max(dot(N, V), 0.0), 5.0);
       vec3 deep = vec3(0.025, 0.07, 0.08), shallow = vec3(0.07, 0.12, 0.1);
-      vec3 body = mix(shallow, deep, smoothstep(5.0, 40.0, dist));
+      vec3 body = mix(shallow, deep, smoothstep(5.0, 40.0, dist)) * (1.0 - 0.6 * uNight);
       vec3 c = mix(body, refl * 0.92, clamp(fres, 0.0, 1.0));
       // glitter path under the sun
       float sp = max(dot(R, uSun), 0.0);
@@ -423,6 +565,36 @@ let dropI = 0;
 function splashAt(x, z, n = 30, power = 2.5) {
   for (let i = 0; i < n; i++) { const d = drops[dropI]; dropI = (dropI + 1) % SPL; const a = Math.random() * 6.28, r = Math.random() * power * 0.5; d.p.set(x, 0.05, z); d.v.set(Math.cos(a) * r, power * (0.6 + Math.random() * 0.8), Math.sin(a) * r); d.life = 1; }
   ripple(x, z, Math.min(1.5, n / 25));
+}
+
+// ---- fireflies (night only) ---------------------------------------------------------
+const FLY = 110, flyGeo = new THREE.BufferGeometry(), flyBase = [];
+flyGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(FLY * 3), 3));
+for (let i = 0; i < FLY; i++) flyBase.push([(Math.random() < 0.5 ? -1 : 1) * (2.5 + Math.random() * 28), 0.3 + Math.random() * 2.2, -1 - Math.random() * 26, Math.random() * 10]);
+const flies = new THREE.Points(flyGeo, new THREE.PointsMaterial({ map: splTex, size: 0.22, color: 0xd8ff7a, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+flies.frustumCulled = false; flies.visible = false; scene.add(flies);
+function updateFlies() {
+  if (!flies.visible) return;
+  const P = flyGeo.attributes.position;
+  for (let i = 0; i < FLY; i++) { const [x, y, z, s] = flyBase[i]; const on = Math.sin(clock * 1.7 + s * 3) > -0.2; P.setXYZ(i, x + Math.sin(clock * 0.4 + s) * 1.2, on ? y + Math.sin(clock * 0.9 + s * 2) * 0.35 : -50, z + Math.cos(clock * 0.33 + s) * 1.2); }
+  P.needsUpdate = true;
+}
+
+// ---- fishing spots: the same lake at different times of day -------------------------------
+const SPOTS = {
+  dusk:  { name: '黄昏静湖', short: '黄昏', sub: '晚霞满湖', lv: 1, sun: [-0.18, 0.2, -1], sunCol: [1.0, 0.82, 0.58], hor: [0.97, 0.78, 0.6], zen: [0.2, 0.38, 0.7], fog: [220, 1100], fogMul: 0.85, hemi: 1.1, sunI: 2.4, sunC: 0xffd6a0, exp: 1.0, night: 0 },
+  dawn:  { name: '清晨薄雾', short: '清晨', sub: '湖上起雾', lv: 3, sun: [0.55, 0.12, -1], sunCol: [1.0, 0.86, 0.66], hor: [0.7, 0.76, 0.8], zen: [0.36, 0.52, 0.76], fog: [70, 760], fogMul: 0.9, hemi: 1.25, sunI: 1.7, sunC: 0xfff0d8, exp: 0.95, night: 0 },
+  night: { name: '月夜星湖', short: '月夜', sub: '星空夜钓', lv: 5, sun: [0.3, 0.32, -1], sunCol: [0.5, 0.58, 0.78], hor: [0.07, 0.1, 0.17], zen: [0.008, 0.016, 0.05], fog: [140, 950], fogMul: 1.0, hemi: 0.32, sunI: 0.45, sunC: 0x9fb4ff, exp: 1.15, night: 1 },
+};
+function applySpot(id) {
+  const s = SPOTS[id] || SPOTS.dusk;
+  SUN_DIR.set(...s.sun).normalize(); SUN_COL.setRGB(...s.sunCol); HORIZON.setRGB(...s.hor); ZENITH.setRGB(...s.zen);
+  scene.fog.color.copy(HORIZON).multiplyScalar(s.fogMul); scene.fog.near = s.fog[0]; scene.fog.far = s.fog[1];
+  waterU.uFogNear.value = s.fog[0]; waterU.uFogFar.value = s.fog[1];
+  hemi.intensity = s.hemi; sun.color.set(s.sunC); sun.intensity = s.sunI; sun.position.copy(SUN_DIR).multiplyScalar(100);
+  renderer.toneMappingExposure = s.exp; skyUniforms.uNight.value = s.night;
+  flies.visible = s.night > 0;
+  antMat.emissiveIntensity = s.night ? 3 : 0.6;
 }
 
 // ============================================================ tackle =======
@@ -472,6 +644,7 @@ const float = new THREE.Group();
   const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.3, 5), new THREE.MeshStandardMaterial({ color: 0xff5a2a, emissive: 0xff3a0a, emissiveIntensity: 0.6 })); ant.position.y = 0.16;
   float.add(top, bot, ant); float.scale.setScalar(2.2); float.visible = false; scene.add(float);
 }
+const antMat = float.children[2].material;
 const lineGeo = new THREE.BufferGeometry(); lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(40 * 3), 3));
 const line = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0xe9efe9, transparent: true, opacity: 0.75 }));
 line.frustumCulled = false; scene.add(line);
@@ -508,7 +681,7 @@ function fishTexture(sp) {
   for (const lx of [20, 492, 236, 276]) { g.beginPath(); g.moveTo(lx, 8); g.lineTo(lx + (lx < 256 ? 10 : -10), H - 8); g.stroke(); }
   const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
-const PROFILE = { deep: [0.36, 0.42], carp: [0.3, 0.34], long: [0.22, 0.26], flat: [0.42, 0.18], slim: [0.2, 0.2], snake: [0.18, 0.22] };
+const PROFILE = { deep: [0.36, 0.42], carp: [0.3, 0.34], long: [0.22, 0.26], flat: [0.42, 0.18], slim: [0.2, 0.2], snake: [0.18, 0.22], cat: [0.2, 0.28] };
 function makeFish(sp, L) {
   // body: a lathe of a fish profile, then squashed sideways; head towards +x
   const [hRatio, wRatio] = PROFILE[sp.body] || PROFILE.deep;
@@ -533,8 +706,46 @@ function makeFish(sp, L) {
     eye.position.set(L * 0.36, L * hRatio * 0.12, s * L * wRatio * 0.3); fish.add(eye);
     const pec = new THREE.Mesh(new THREE.CircleGeometry(L * 0.07, 10, 0, Math.PI), finMat); pec.position.set(L * 0.22, -L * hRatio * 0.18, s * L * wRatio * 0.4); pec.rotation.set(0, s * 0.6, Math.PI * 0.8); fish.add(pec);
   }
+  if (sp.whisk) for (const s of [-1, 1]) for (const k of [0, 1]) {
+    const w = new THREE.Mesh(new THREE.CylinderGeometry(L * 0.005, L * 0.002, L * 0.32, 4), finMat);
+    w.position.set(L * 0.6, -L * hRatio * 0.08 - k * L * 0.03, s * L * wRatio * 0.22); w.rotation.set(s * (0.5 + k * 0.4), 0, -Math.PI / 2 - 0.35 - k * 0.3); fish.add(w);
+  }
+  if (sp.glow) {
+    mat.emissiveIntensity = sp.glow;
+    const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: splTex, color: sp.color[1], transparent: true, opacity: 0.6, depthWrite: false, blending: THREE.AdditiveBlending }));
+    halo.scale.set(L * 2, L * 1.3, 1); fish.add(halo);
+  }
   fish.userData = { tail: tailM, L };
   return fish;
+}
+function makeJunk(id) {
+  const g = new THREE.Group(); let L = 0.3;
+  if (id === 'boot') {
+    const m = new THREE.MeshStandardMaterial({ color: 0x3b4136, roughness: 0.9 });
+    const sole = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.05, 0.11), m);
+    const up = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.062, 0.24, 12), m); up.position.set(-0.09, 0.13, 0);
+    const toe = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 8), m); toe.scale.set(1.4, 0.8, 0.95); toe.position.set(0.07, 0.04, 0);
+    const weed = new THREE.Mesh(new THREE.PlaneGeometry(0.03, 0.16), new THREE.MeshLambertMaterial({ color: 0x4f7a3a, side: THREE.DoubleSide })); weed.position.set(-0.09, 0.3, 0.02); weed.rotation.z = 0.4;
+    g.add(sole, up, toe, weed);
+  } else if (id === 'bottle') {
+    const glass = new THREE.MeshStandardMaterial({ color: 0x6fb38a, transparent: true, opacity: 0.55, roughness: 0.08, metalness: 0.2 });
+    const b = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.18, 16), glass);
+    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.034, 0.07, 12), glass); neck.position.y = 0.125;
+    const cork = new THREE.Mesh(new THREE.CylinderGeometry(0.017, 0.015, 0.03, 8), new THREE.MeshLambertMaterial({ color: 0xa0784a })); cork.position.y = 0.17;
+    const paper = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.12, 10), new THREE.MeshLambertMaterial({ color: 0xf0e6c8 }));
+    g.add(b, neck, cork, paper); L = 0.22;
+  } else {
+    const wood = new THREE.MeshLambertMaterial({ color: 0x6b4426 }), gold = new THREE.MeshStandardMaterial({ color: 0xe2b25a, metalness: 0.8, roughness: 0.3, emissive: 0x553300 });
+    const box = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.17, 0.22), wood);
+    const lid = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.07, 0.23), wood); lid.position.y = 0.12;
+    g.add(box, lid);
+    for (const x of [-0.11, 0.11]) { const band = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.25, 0.235), gold); band.position.set(x, 0.04, 0); g.add(band); }
+    const lock = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.06, 0.02), gold); lock.position.set(0, 0.08, 0.12); g.add(lock);
+    const shine = new THREE.Sprite(new THREE.SpriteMaterial({ map: splTex, color: 0xffd36a, transparent: true, opacity: 0.5, depthWrite: false, blending: THREE.AdditiveBlending })); shine.scale.setScalar(0.6); g.add(shine);
+    L = 0.4;
+  }
+  g.userData = { tail: new THREE.Object3D(), L, junk: true };
+  return g;
 }
 
 // ============================================================ audio ========
@@ -571,51 +782,148 @@ const sfx = {
     o.connect(g).connect(master); o.start(t); o.stop(t + 0.2);
   },
   snap: () => { noiseBurst(0.08, 3000, 0.6, 2); },
+  coin: () => { tone(1320, 0, 0.07, 0.06); tone(1760, 0.06, 0.14, 0.06); },
+  level: () => { [523, 659, 784, 1046].forEach((f, i) => tone(f, i * 0.1, 0.3, 0.07)); },
 };
+function tone(freq, at, dur, vol, type = 'triangle') {
+  if (!AC) return;
+  const o = AC.createOscillator(), g = AC.createGain(), t = AC.currentTime + at; o.type = type; o.frequency.value = freq;
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g).connect(master); o.start(t); o.stop(t + dur + 0.02);
+}
 const buzz = (ms) => { try { navigator.vibrate?.(ms); } catch {} };
 
 // ============================================================ game state ===
 const $ = (id) => document.getElementById(id);
-const ui = { main: $('main'), hint: $('hint'), meter: $('meter'), fill: $('fill'), zone: $('zone'), ml: $('meter-left'), mr: $('meter-right'), msg: $('msg') };
-let state = 'menu';          // menu | idle | charge | fly | wait | bite | fight | lift | result
+const ui = { main: $('main'), hint: $('hint'), meter: $('meter'), fill: $('fill'), zone: $('zone'), ml: $('meter-left'), mr: $('meter-right'), msg: $('msg'), stam: $('stam'), stamw: $('stamw') };
+let state = 'menu';          // menu | idle | charge | fly | wait | bite | fight | lift | result | lost | over
+let mode = 'free';           // free | timed
 let clock = 0, yaw = 0, holding = false;
 let charge = 0, castFrom = new THREE.Vector3(), castTo = new THREE.Vector3(), flyT = 0, flyDur = 1;
-let waitT = 0, nibbles = 0, nextNibble = 0, biteT = 0, current = null;
-const F = { pos: new THREE.Vector3(), dist: 0, stamina: 1, run: 0, runDir: 0, tension: 0, slack: 0, over: 0, angle: 0, mesh: null };
+let waitT = 0, nibbles = 0, nextNibble = 0, biteT = 0, current = null, castBait = 'worm', perfect = false, chumLeft = 0, forceNext = null;
+let timeLeft = 0, lastCall = false;
+const timed = { kg: 0, n: 0, max: 0 };
+const F = { pos: new THREE.Vector3(), dist: 0, stamina: 1, run: 0, runDir: 0, tension: 0, slack: 0, over: 0, angle: 0, mesh: null, jumpT: 0, liftT: 0 };
 let msgT = 0;
+const rodDef = () => RODS[save.rod] || RODS[0], lineDef = () => LINES[save.line] || LINES[0];
+const jinStr = (kg) => { const j = kg * 2; return `${j.toFixed(j < 2 ? 2 : 1)} 斤`; };
+const num = (n) => Math.round(n).toLocaleString('zh-CN');
+function persist() { store.set(SAVE_KEY, save); }
 function say(big, small = '', t = 1.8) { ui.msg.innerHTML = big + (small ? `<small>${small}</small>` : ''); ui.msg.classList.add('show'); msgT = t; }
 function setMain(text, cls = '') { ui.main.textContent = text; ui.main.className = cls; }
-function baitName() { return BAITS.find((b) => b.id === save.bait).name; }
-function refreshTop() { $('bait-name').textContent = baitName(); $('count').textContent = Object.values(save.log).reduce((s, x) => s + x.n, 0); }
+const toastQ = []; let toastBusy = false;
+function toast(t) { toastQ.push(t); if (!toastBusy) nextToast(); }
+function nextToast() {
+  const t = toastQ.shift(); if (!t) { toastBusy = false; return; }
+  toastBusy = true; const el = $('toast'); el.textContent = t; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+  setTimeout(nextToast, 1500);
+}
+function baitDef(id = save.bait) { return BAITS.find((b) => b.id === id) || BAITS[0]; }
+function baitLabel() { const b = baitDef(); return b.prem ? `${b.name}${save.inv[b.id]}` : b.name; }
+function totalCaught() { return Object.values(save.log).reduce((s, x) => s + x.n, 0); }
+function refreshTop() {
+  $('bait-name').textContent = baitLabel() + (chumLeft > 0 ? `·窝${chumLeft}` : '');
+  $('coins').textContent = num(save.coins);
+  $('menu-dot').hidden = !tasksClaimable();
+}
+function applyRodLook() { const r = rodDef(); rodMat.color.set(r.col); rodMat.metalness = r.metal; }
 
-function toIdle(note = '') {
-  state = 'idle'; float.visible = false; line.visible = false; F.mesh && scene.remove(F.mesh); F.mesh = null;
-  setMain('按住 抛竿'); ui.meter.classList.remove('on');
-  ui.hint.textContent = note || '左右滑动屏幕可以转向，按住按钮蓄力，松手抛出去';
+// ---- levels, coins ----------------------------------------------------------------------
+const TITLES = [[1, '新手钓客'], [3, '业余钓手'], [5, '老钓友'], [7, '钓鱼达人'], [10, '湖畔高手'], [14, '一代钓王']];
+function levelInfo(xp = save.xp) {
+  let lv = 1, need = 100; while (xp >= need) { xp -= need; lv++; need = Math.round(need * 1.35); }
+  let title = TITLES[0][1]; for (const [l, t] of TITLES) if (lv >= l) title = t;
+  return { lv, cur: xp, need, title };
+}
+function gainXP(n) {
+  const before = levelInfo().lv; save.xp += Math.round(n); const L = levelInfo();
+  if (L.lv > before) {
+    setTimeout(() => {
+      say(`升到 ${L.lv} 级`, L.title, 2.4); sfx.level(); buzz([40, 40, 40]);
+      for (const s of Object.values(SPOTS)) if (s.lv > before && s.lv <= L.lv) toast(`新钓点解锁：${s.name}`);
+    }, 500);
+  }
+}
+function addCoins(n, why = '') { n = Math.round(n); if (n <= 0) return; save.coins += n; refreshTop(); sfx.coin(); toast(`${why ? why + ' ' : ''}+${num(n)} 金币`); }
+
+// ---- daily tasks --------------------------------------------------------------------------
+const COMMON = ['jiyu', 'liyu', 'bianyu', 'luofei', 'caoyu'];
+function today() { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; }
+function seeded(str) { let h = 7; for (const ch of str) h = (h * 31 + ch.charCodeAt(0)) | 0; return () => { h = (Math.imul(h, 1103515245) + 12345) & 0x7fffffff; return h / 0x7fffffff; }; }
+function ensureDaily() {
+  if (save.daily && save.daily.date === today()) return;
+  const r = seeded(today()), pool = ['any', 'sp', 'big', 'perfect', 'release', 'timed'];
+  for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+  const tasks = pool.slice(0, 3).map((k) => {
+    if (k === 'any') return { k, n: 5 + Math.floor(r() * 4), rw: 150 };
+    if (k === 'sp') return { k, sp: COMMON[Math.floor(r() * COMMON.length)], n: 2 + Math.floor(r() * 2), rw: 180 };
+    if (k === 'big') return { k, w: [3, 4, 5, 6][Math.floor(r() * 4)], n: 1, rw: 220 };
+    if (k === 'perfect') return { k, n: 3, rw: 160 };
+    if (k === 'release') return { k, n: 2, rw: 120 };
+    return { k, n: 1, rw: 150 };
+  });
+  for (const t of tasks) { t.prog = 0; t.claimed = false; }
+  save.daily = { date: today(), tasks }; persist();
+}
+function taskText(t) {
+  return { any: `钓到 ${t.n} 条鱼`, sp: `钓到 ${t.n} 条${(FISH.find((f) => f.id === t.sp) || {}).name}`, big: `钓到一条 ${t.w} 斤以上的鱼`, perfect: `完美提竿 ${t.n} 次`, release: `放生 ${t.n} 条鱼`, timed: '玩一局限时赛' }[t.k];
+}
+function tasksClaimable() { return !!save.daily && save.daily.date === today() && save.daily.tasks.some((t) => t.prog >= t.n && !t.claimed); }
+function progress(k, v = 1, extra = null) {
+  ensureDaily();
+  for (const t of save.daily.tasks) {
+    if (t.k !== k || t.prog >= t.n) continue;
+    if (k === 'sp' && extra !== t.sp) continue;
+    if (k === 'big') { if (v * 2 >= t.w) t.prog = 1; else continue; } else t.prog++;
+    if (t.prog >= t.n) { toast(`任务完成：${taskText(t)}`); sfx.coin(); }
+  }
+  persist(); refreshTop();
 }
 
-// pick a fish for this bait: rarer species are rarer, bigger fish rarer still
-function pickFish() {
-  const bag = []; for (const sp of FISH) { const w = (sp.bait[save.bait] || 0) * (sp.rare ? 0.25 : 1); if (w > 0) bag.push([sp, w]); }
+// ---- what bites -------------------------------------------------------------------------------
+function pickJunk() {
+  let r = Math.random() * JUNK.reduce((s, j) => s + j.w, 0), j = JUNK[0];
+  for (const x of JUNK) { if ((r -= x.w) <= 0) { j = x; break; } }
+  return { junk: j, kg: j.kg, cm: 30, u: 0, strength: j.id === 'chest' ? 0.5 : 0.3, coins: Math.round(j.c[0] + Math.random() * (j.c[1] - j.c[0])) };
+}
+function pickCatch() {
+  const b = baitDef(castBait);
+  if (forceNext === 'junk' || (!forceNext && totalCaught() > 2 && Math.random() < 0.045)) { forceNext = null; return pickJunk(); }
+  const bag = [];
+  for (const sp of FISH) {
+    let w = (sp.bait[castBait] || 0) * (sp.t && sp.t[save.spot] !== undefined ? sp.t[save.spot] : 1);
+    if (sp.rare) w *= 0.25 * (b.rare || 1) * (1 + 0.25 * save.luck);
+    if (sp.legend) w *= 0.022 * (b.rare ? 2 : 1) * (1 + 0.5 * save.luck);
+    if (forceNext) w = sp.id === forceNext ? 1 : 0;
+    if (w > 0) bag.push([sp, w]);
+  }
+  forceNext = null;
+  if (!bag.length) bag.push([FISH[0], 1]);
   let r = Math.random() * bag.reduce((s, x) => s + x[1], 0), sp = bag[0][0];
   for (const [s, w] of bag) { if ((r -= w) <= 0) { sp = s; break; } }
-  const u = Math.pow(Math.random(), 2.4);                        // most fish are small ones
+  const boost = (b.size || 1) * (chumLeft > 0 ? 1.25 : 1) * (1 + 0.06 * save.luck);
+  const u = Math.pow(Math.random(), 2.4 / boost);               // most fish are small ones
   const kg = sp.w[0] + (sp.w[1] - sp.w[0]) * u;
-  const cm = Math.round(Math.cbrt(kg / sp.k) * 10 * 0.95);          // weight-length relation: W = k·L³
-  return { sp, kg, cm, strength: sp.pull * (0.6 + 0.8 * u) };
+  const cm = Math.round(Math.cbrt(kg / sp.k) * 10 * 0.95);       // weight-length relation: W = k·L³
+  return { sp, kg, cm, u, strength: sp.pull * (0.6 + 0.8 * u) };
+}
+
+function clearTackle() { float.visible = false; line.visible = false; if (F.mesh) scene.remove(F.mesh); F.mesh = null; ui.meter.classList.remove('on'); ui.stamw.hidden = true; ui.main.classList.remove('alert'); }
+function toIdle(note = '') {
+  state = 'idle'; clearTackle();
+  setMain('按住 抛竿');
+  const b = baitDef();
+  if (b.prem && save.inv[b.id] <= 0) { save.bait = 'worm'; persist(); note = note || `${b.name}用完了，换回蚯蚓`; }
+  ui.hint.textContent = note || '左右滑动屏幕可以转向，按住按钮蓄力，松手抛出去';
+  refreshTop();
 }
 
 // ---- input ----------------------------------------------------------------------------
 function press() {
   audioInit(); holding = true; ui.main.classList.add('held');
   if (state === 'idle') { state = 'charge'; charge = 0; ui.meter.classList.add('on'); ui.ml.textContent = '力度'; ui.zone.style.left = '0'; ui.zone.style.width = '0'; }
-  else if (state === 'wait') {
-    // struck too early (or just reeling in to recast)
-    if (nibbles > 0) { say('提早了', '鱼被吓跑了'); }
-    toIdle();
-  }
+  else if (state === 'wait') { if (nibbles > 0) say('提早了', '鱼被吓跑了'); toIdle(); }
   else if (state === 'bite') hook();
-  else if (state === 'result') {}
 }
 function release() {
   holding = false; ui.main.classList.remove('held');
@@ -624,7 +932,8 @@ function release() {
 ui.main.addEventListener('pointerdown', (e) => { e.preventDefault(); ui.main.setPointerCapture?.(e.pointerId); press(); });
 ui.main.addEventListener('pointerup', (e) => { e.preventDefault(); release(); });
 ui.main.addEventListener('pointercancel', () => release());
-addEventListener('keydown', (e) => { if (e.code === 'Space' && !e.repeat && state !== 'menu') { e.preventDefault(); press(); } });
+const panelOpen = () => [...document.querySelectorAll('.panel')].some((p) => !p.hidden);
+addEventListener('keydown', (e) => { if (e.code === 'Space' && !e.repeat && !panelOpen()) { e.preventDefault(); press(); } });
 addEventListener('keyup', (e) => { if (e.code === 'Space') release(); });
 // swipe on the scene to look left / right
 let dragX = null;
@@ -634,6 +943,8 @@ addEventListener('pointerup', () => { dragX = null; });
 
 function cast() {
   ui.meter.classList.remove('on');
+  castBait = save.bait; const b = baitDef();
+  if (b.prem) { save.inv[b.id] = Math.max(0, save.inv[b.id] - 1); persist(); refreshTop(); }
   const p = Math.max(0.15, charge);
   const d = 7 + p * 33;
   castFrom.copy(tipWorld);
@@ -644,68 +955,211 @@ function cast() {
 }
 function landed() {
   state = 'wait'; splashAt(castTo.x, castTo.z, 12, 1.2); sfx.splash(0.4);
-  current = pickFish();
-  waitT = 0; nibbles = 0; nextNibble = 2.5 + Math.random() * 6; biteT = 0;
+  current = pickCatch();
+  const fast = chumLeft > 0 ? 0.45 : 1;
+  waitT = 0; nibbles = 0; nextNibble = (2.5 + Math.random() * 6) * fast; biteT = 0;
+  if (chumLeft > 0) chumLeft--;
+  refreshTop();
 }
 function hook() {
   ui.main.classList.remove('alert');
-  // hooked! the fight starts with the fish where the float was
+  perfect = biteT < 0.4;
   state = 'fight'; buzz(60);
   F.pos.copy(float.position).setY(-0.8); F.dist = Math.hypot(F.pos.x - camera.position.x, F.pos.z - camera.position.z);
-  F.stamina = 1; F.run = 0.8; F.runDir = (Math.random() - 0.5) * 2; F.tension = 0.4; F.over = 0; F.slack = 0;
+  F.stamina = perfect ? 0.75 : 1; F.run = 0.8; F.runDir = current.junk ? 0 : (Math.random() < 0.5 ? -1 : 1); F.tension = 0.4; F.over = 0; F.slack = 0; F.angle = 0; F.jumpT = 0;
+  F.mesh = current.junk ? makeJunk(current.junk.id) : makeFish(current.sp, current.cm / 100); F.mesh.visible = false; scene.add(F.mesh);
   float.visible = false;
   splashAt(F.pos.x, F.pos.z, 30, 2.4); sfx.splash(0.8);
-  say('中鱼了！', '按住收线，拉力别进红区');
-  setMain('按住 收线'); ui.meter.classList.add('on'); ui.ml.textContent = '拉力';
-  ui.zone.style.left = '30%'; ui.zone.style.width = '45%';
+  if (current.sp && current.sp.legend) say('有大家伙！', '劲大得吓人，慢慢遛', 2.4);
+  else if (perfect) say('完美提竿！', '鱼被你打了个措手不及');
+  else say('中鱼了！', '按住收线，拉力别进红区');
+  if (perfect) progress('perfect');
+  setMain('按住 收线'); ui.meter.classList.add('on'); ui.ml.textContent = '拉力'; ui.stamw.hidden = false;
+  ui.zone.style.left = '30%'; ui.zone.style.width = '48%';
   ui.hint.textContent = '拉力太大线会断，太松鱼会脱钩。鱼冲的时候松一松手';
 }
 function lose(why) {
-  ui.meter.classList.remove('on');
-  say(why === 'snap' ? '线断了' : '鱼跑了', why === 'snap' ? '拉得太猛了，鱼冲的时候要松手' : '线太松，鱼把钩甩掉了', 2.4);
+  clearTackle();
+  say(why === 'snap' ? '线断了' : '鱼跑了', why === 'snap' ? '拉得太猛了，鱼冲、鱼跳的时候要松手' : '线太松，鱼把钩甩掉了', 2.4);
   if (why === 'snap') { sfx.snap(); buzz([80, 40, 80]); }
-  setTimeout(() => toIdle(), 900);
+  if (save.streak > 1) toast(`连杆断了（之前 ${save.streak} 连）`);
+  save.streak = 0; persist();
+  setTimeout(() => { if (state === 'lost') toIdle(why === 'snap' && save.line < LINES.length - 1 ? '换根粗点的线会好很多（渔具店）' : ''); }, 900);
   state = 'lost';
 }
 function landFish() {
-  state = 'lift'; ui.meter.classList.remove('on');
-  F.mesh = makeFish(current.sp, current.cm / 100);
-  scene.add(F.mesh); F.liftT = 0; splashAt(F.pos.x, F.pos.z, 40, 3); sfx.splash(1);
+  state = 'lift'; ui.meter.classList.remove('on'); ui.stamw.hidden = true;
+  F.mesh.visible = true; F.liftT = 0; splashAt(F.pos.x, F.pos.z, 40, 3); sfx.splash(1);
   setMain('收鱼…', 'calm'); ui.hint.textContent = '';
 }
+const NOTES = { jiyu: '鲫鱼，炖汤最鲜。', liyu: '鲤鱼劲大，遛得漂亮。', caoyu: '草鱼，红烧不错。', lianyu: '鲢鱼，头大，剁椒鱼头。', bianyu: '鳊鱼，清蒸正好。', luofei: '罗非鱼。', qiaozui: '翘嘴，嘴往上翘，爱吃活饵。', heiyu: '黑鱼，凶，牙尖。', nianyu: '鲶鱼，胡子长，夜里最活跃。', guiyu: '鳜鱼，桂鱼，难得一见。', qingyu: '青鱼！大家伙，水里的老大。', jinli: '金光闪闪的金鲤！好兆头，湖边都在传。', yueguang: '月光鳜，鳞片像月光一样。这辈子能见一次就值了。' };
 function showCatch() {
   state = 'result';
-  const c = current, jin = c.kg * 2, rec = save.log[c.sp.id];
-  const best = !rec || c.kg > rec.max;
-  $('c-name').innerHTML = c.sp.name + (best ? '<span class="badge">新纪录</span>' : '');
-  $('c-rare').textContent = c.sp.rare ? '稀 有' : '';
-  $('c-weight').textContent = `${jin.toFixed(jin < 2 ? 2 : 1)} 斤`;
-  $('c-length').textContent = `${c.cm} 厘米`;
-  const notes = { jiyu: '鲫鱼，炖汤最鲜。', liyu: '鲤鱼劲大，遛得漂亮。', caoyu: '草鱼，红烧不错。', lianyu: '鲢鱼，头大，剁椒鱼头。', bianyu: '鳊鱼，清蒸正好。', luofei: '罗非鱼。', qiaozui: '翘嘴，嘴往上翘，爱吃活饵。', heiyu: '黑鱼，凶，牙尖。', guiyu: '鳜鱼，桂鱼，难得一见。', qingyu: '青鱼！大家伙，水里的老大。' };
-  $('c-note').textContent = (notes[c.sp.id] || '') + (rec ? ` 这是你钓到的第 ${rec.n + 1} 条${c.sp.name}。` : ' 第一次钓到这种鱼。');
+  const c = current, card = $('catch-card');
+  if (c.junk) {
+    card.classList.remove('gold');
+    $('c-rare').textContent = '意外收获'; $('c-name').textContent = c.junk.name; $('c-stars').textContent = '';
+    $('c-weight').textContent = jinStr(c.kg); $('c-length').textContent = '—';
+    $('c-note').textContent = c.junk.note; $('c-reward').textContent = '';
+    c.value = c.coins; $('btn-release').hidden = true; $('btn-keep').textContent = c.value ? `收下 +${num(c.value)} 金币` : '扔进垃圾桶';
+  } else {
+    const rec = save.log[c.sp.id], best = rec && c.kg > rec.max;
+    card.classList.toggle('gold', !!c.sp.legend);
+    $('c-name').innerHTML = c.sp.name + (best ? '<span class="badge">新纪录</span>' : '') + (!rec ? '<span class="badge new">新鱼种</span>' : '');
+    $('c-rare').textContent = c.sp.legend ? '传 说' : c.sp.rare ? '稀 有' : '';
+    const stars = 1 + Math.min(4, Math.floor(c.u * 5.2)); c.stars = stars;
+    $('c-stars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    $('c-weight').textContent = jinStr(c.kg);
+    $('c-length').textContent = `${c.cm} 厘米`;
+    $('c-note').textContent = (NOTES[c.sp.id] || '') + (rec ? ` 这是你钓到的第 ${rec.n + 1} 条${c.sp.name}。` : ' 第一次钓到这种鱼，奖励 50 金币。');
+    const streakB = Math.min(0.5, save.streak * 0.1);
+    c.value = Math.round(c.sp.p * c.kg * 2 * (1 + streakB) * (perfect ? 1.2 : 1) * (1 + (stars - 1) * 0.1)) + 5;
+    const bonus = [perfect && '完美提竿 ×1.2', save.streak >= 1 && `${save.streak + 1} 连杆 +${Math.round(streakB * 100)}%`, stars >= 3 && `${stars} 星个头`].filter(Boolean);
+    $('c-reward').textContent = bonus.join(' · ');
+    $('btn-release').hidden = false; $('btn-release').textContent = `放生 +${num(c.value / 2)}`;
+    $('btn-keep').textContent = `收下 +${num(c.value)} 金币`;
+    if (c.sp.legend) { sfx.level(); buzz([60, 60, 60, 60, 200]); }
+  }
   $('catch').hidden = false;
 }
-function record() {
-  const c = current, r = save.log[c.sp.id] || { n: 0, max: 0 };
-  r.n++; r.max = Math.max(r.max, c.kg); save.log[c.sp.id] = r; store.set('jinghu-save', save); refreshTop();
+function record(kind) {
+  const c = current;
+  if (c.junk) { addCoins(c.value, c.junk.name); gainXP(5); persist(); return; }
+  const id = c.sp.id, first = !save.log[id], r = save.log[id] || { n: 0, max: 0 };
+  r.n++; r.max = Math.max(r.max, c.kg); save.log[id] = r;
+  addCoins(kind === 'keep' ? c.value : c.value / 2, kind === 'keep' ? '' : '放生');
+  if (first) addCoins(50, '新鱼种');
+  if (c.sp.rare || c.sp.legend) save.luck = 0;
+  if (kind === 'release') { save.luck = Math.min(5, save.luck + 1); toast(`福气 +1，稀有鱼更爱来（${save.luck}/5）`); }
+  save.streak++;
+  gainXP(10 + c.kg * 8 + (c.sp.rare ? 40 : 0) + (c.sp.legend ? 200 : 0));
+  progress('any'); progress('sp', 1, id); progress('big', c.kg); if (kind === 'release') progress('release');
+  if (mode === 'timed') { timed.kg += c.kg; timed.n++; timed.max = Math.max(timed.max, c.kg); }
+  persist(); refreshTop();
 }
-$('btn-keep').onclick = () => { record(); $('catch').hidden = true; toIdle('收好了。再来一竿？'); };
-$('btn-release').onclick = () => { record(); $('catch').hidden = true; if (F.mesh) { splashAt(F.mesh.position.x, F.mesh.position.z, 20, 1.5); sfx.splash(0.5); } toIdle('放生了，下次长大了再来。'); };
+$('btn-keep').onclick = () => { record('keep'); $('catch').hidden = true; toIdle(current.junk ? '' : '收好了。再来一竿？'); };
+$('btn-release').onclick = () => { record('release'); $('catch').hidden = true; if (F.mesh) { splashAt(F.mesh.position.x, F.mesh.position.z, 20, 1.5); sfx.splash(0.5); } toIdle('放生了，福气会带来好鱼。'); };
 
-// ---- panels ------------------------------------------------------------------------------
-$('btn-start').onclick = () => { audioInit(); $('start').hidden = true; toIdle(); };
+// ---- modes ------------------------------------------------------------------------------
+function closePanels() { for (const p of document.querySelectorAll('.panel')) p.hidden = true; }
+function startFree() { audioInit(); mode = 'free'; $('timer').hidden = true; closePanels(); toIdle(); }
+function startTimed() {
+  audioInit(); mode = 'timed'; timeLeft = 180; lastCall = false; Object.assign(timed, { kg: 0, n: 0, max: 0 });
+  $('timer').hidden = false; closePanels(); toIdle('限时 3 分钟，钓得越重越好！'); say('开始！', '3 分钟，看你能钓多重');
+}
+function endTimed() {
+  clearTackle(); state = 'over'; mode = 'free'; $('timer').hidden = true; $('catch').hidden = true;
+  const rec = timed.kg > save.best && timed.kg > 0; if (rec) save.best = timed.kg;
+  const reward = Math.round(timed.kg * 2 * 12 + timed.n * 8);
+  $('o-rec').textContent = rec ? '新 纪 录' : '';
+  $('o-kg').textContent = jinStr(timed.kg); $('o-n').textContent = `${timed.n} 条`;
+  $('o-max').textContent = timed.max ? jinStr(timed.max) : '—'; $('o-best').textContent = save.best ? jinStr(save.best) : '—';
+  $('o-reward').textContent = reward ? `比赛奖励 ${num(reward)} 金币` : '一条没钓到，再来一局吧';
+  addCoins(reward, '比赛奖励'); progress('timed'); gainXP(timed.n * 3); persist();
+  say('时间到', '', 1.2); sfx.level();
+  $('over').hidden = false;
+}
+function openMenu() { state = 'menu'; mode = 'free'; $('timer').hidden = true; clearTackle(); closePanels(); renderMenu(); $('start').hidden = false; }
+function renderMenu() {
+  const L = levelInfo();
+  $('p-lv').textContent = `${L.lv} 级 · ${L.title}`; $('p-coins').textContent = num(save.coins); $('p-xp').style.width = `${(L.cur / L.need) * 100}%`;
+  $('spots').innerHTML = Object.entries(SPOTS).map(([id, s]) => { const lock = L.lv < s.lv; return `<button class="spot ${id === save.spot ? 'on' : ''}" data-s="${id}" type="button" ${lock ? 'disabled' : ''}>${s.short}<small>${lock ? `${s.lv} 级解锁` : s.sub}</small></button>`; }).join('');
+  $('timed-best').textContent = save.best > 0 ? `最好成绩 ${jinStr(save.best)}` : '3 分钟，比谁钓得重';
+  ensureDaily(); $('task-dot').hidden = !tasksClaimable();
+  $('howd').open = totalCaught() === 0;
+}
+$('spots').onclick = (e) => { const b = e.target.closest('.spot'); if (!b || b.disabled) return; save.spot = b.dataset.s; applySpot(save.spot); persist(); renderMenu(); };
+$('btn-start').onclick = startFree;
+$('btn-timed').onclick = startTimed;
+$('btn-over-again').onclick = startTimed;
+$('btn-over-menu').onclick = openMenu;
+$('btn-menu').onclick = () => {
+  if (state === 'menu' || state === 'over') return;
+  if (['fight', 'lift', 'charge', 'fly', 'lost'].includes(state)) { say('先把这一竿收了', '', 1.4); return; }
+  if (state === 'result') { say('先处理这条鱼', '', 1.4); return; }
+  openMenu();
+};
+
+// ---- bait panel --------------------------------------------------------------------------
+function renderBaits() {
+  $('bait-list').innerHTML = BAITS.map((b) => {
+    const n = b.prem ? save.inv[b.id] : null, off = b.prem && n <= 0;
+    return `<button class="bait ${b.id === save.bait ? 'on' : ''}" data-b="${b.id}" type="button" ${off ? 'disabled' : ''}>${b.name}${b.prem ? ` ×${n}` : ''}<small>${off ? '去渔具店买' : b.note}</small></button>`;
+  }).join('');
+  $('btn-chum').innerHTML = `撒一把窝料<small>${save.inv.chum > 0 ? `还有 ${save.inv.chum} 包 · 接下来 5 竿鱼来得快、个头大` : '没有窝料了，渔具店有卖'}</small>`;
+  $('btn-chum').disabled = save.inv.chum <= 0;
+}
 $('btn-bait').onclick = () => {
   if (state !== 'idle') { say('先收竿', '收竿后才能换饵', 1.4); return; }
-  $('bait-list').innerHTML = BAITS.map((b) => `<button class="bait ${b.id === save.bait ? 'on' : ''}" data-b="${b.id}" type="button">${b.name}<small>${b.note}</small></button>`).join('');
-  $('baits').hidden = false;
+  renderBaits(); $('baits').hidden = false;
 };
-$('bait-list').onclick = (e) => { const b = e.target.closest('.bait'); if (!b) return; save.bait = b.dataset.b; store.set('jinghu-save', save); for (const x of document.querySelectorAll('.bait')) x.classList.toggle('on', x === b); refreshTop(); };
+$('bait-list').onclick = (e) => { const b = e.target.closest('.bait'); if (!b || b.disabled) return; save.bait = b.dataset.b; persist(); renderBaits(); refreshTop(); };
+$('btn-chum').onclick = () => {
+  if (save.inv.chum <= 0) return;
+  save.inv.chum--; chumLeft = 5; persist();
+  const d = 18; splashAt(camera.position.x - Math.sin(yaw) * d, camera.position.z - Math.cos(yaw) * d, 50, 2); sfx.splash(0.7);
+  $('baits').hidden = true; refreshTop(); toast('窝打好了，接下来 5 竿鱼口更好');
+};
 $('btn-bait-ok').onclick = () => { $('baits').hidden = true; };
+
+// ---- shop ---------------------------------------------------------------------------------
+function renderShop() {
+  $('s-coins').textContent = num(save.coins);
+  const gear = (list, owned, cur, kind) => list.map((g, i) => {
+    let btn;
+    if (i === cur) btn = '<button class="btn-ghost" disabled>使用中</button>';
+    else if (owned.includes(i)) btn = `<button class="btn-ghost" data-act="use-${kind}" data-i="${i}">换上</button>`;
+    else btn = `<button class="btn-gold" data-act="buy-${kind}" data-i="${i}" ${save.coins < g.price ? 'disabled' : ''}>${num(g.price)} 金币</button>`;
+    return `<div class="row"><div class="nm">${g.name}<small>${g.note}</small></div>${btn}</div>`;
+  }).join('');
+  const baits = BAITS.filter((b) => b.prem).map((b) => `<div class="row"><div class="nm">${b.name} <small>${b.note} · 现有 ${save.inv[b.id]} 个</small></div><button class="btn-gold" data-act="bait" data-b="${b.id}" ${save.coins < b.price * 10 ? 'disabled' : ''}>10 个 · ${b.price * 10}</button></div>`).join('');
+  const chum = `<div class="row"><div class="nm">${CHUM.name}<small>${CHUM.note} · 现有 ${save.inv.chum} 包</small></div><button class="btn-gold" data-act="chum" ${save.coins < CHUM.price ? 'disabled' : ''}>1 包 · ${CHUM.price}</button></div>`;
+  $('shop-list').innerHTML = `<div class="sec">鱼竿</div>${gear(RODS, save.rods, save.rod, 'rod')}<div class="sec">鱼线</div>${gear(LINES, save.lines, save.line, 'line')}<div class="sec">特饵</div>${baits}<div class="sec">窝料</div>${chum}`;
+}
+function spend(n) { if (save.coins < n) { say('金币不够', '', 1.2); return false; } save.coins -= n; sfx.coin(); return true; }
+$('shop-list').onclick = (e) => {
+  const b = e.target.closest('button[data-act]'); if (!b || b.disabled) return;
+  const act = b.dataset.act, i = +b.dataset.i;
+  if (act === 'buy-rod' && spend(RODS[i].price)) { save.rods.push(i); save.rod = i; applyRodLook(); toast(`换上了${RODS[i].name}`); }
+  else if (act === 'use-rod') { save.rod = i; applyRodLook(); }
+  else if (act === 'buy-line' && spend(LINES[i].price)) { save.lines.push(i); save.line = i; toast(`换上了${LINES[i].name}`); }
+  else if (act === 'use-line') save.line = i;
+  else if (act === 'bait') { const d = baitDef(b.dataset.b); if (spend(d.price * 10)) { save.inv[d.id] += 10; toast(`买了 10 个${d.name}`); } }
+  else if (act === 'chum' && spend(CHUM.price)) { save.inv.chum++; toast('买了一包窝料'); }
+  persist(); renderShop(); refreshTop();
+};
+$('btn-shop').onclick = () => { renderShop(); $('shop').hidden = false; };
+$('btn-shop-ok').onclick = () => { $('shop').hidden = true; renderMenu(); };
+
+// ---- tasks ----------------------------------------------------------------------------------
+function renderTasks() {
+  ensureDaily();
+  $('task-list').innerHTML = save.daily.tasks.map((t, i) => {
+    const done = t.prog >= t.n, p = Math.min(t.prog, t.n);
+    const btn = t.claimed ? '<button class="btn-ghost" disabled>已领</button>' : done ? `<button class="btn-gold" data-i="${i}">领 ${t.rw}</button>` : `<button class="btn-ghost" disabled>${p}/${t.n}</button>`;
+    return `<div class="row"><div class="nm">${taskText(t)}<small>奖励 ${t.rw} 金币</small><div class="xp"><i style="width:${(p / t.n) * 100}%"></i></div></div>${btn}</div>`;
+  }).join('');
+}
+$('task-list').onclick = (e) => {
+  const b = e.target.closest('button[data-i]'); if (!b) return;
+  const t = save.daily.tasks[+b.dataset.i]; if (t.claimed || t.prog < t.n) return;
+  t.claimed = true; addCoins(t.rw, '任务奖励'); gainXP(t.rw / 4); persist(); renderTasks();
+};
+$('btn-tasks').onclick = () => { renderTasks(); $('tasks').hidden = false; };
+$('btn-tasks-ok').onclick = () => { $('tasks').hidden = true; renderMenu(); };
+
+// ---- dex --------------------------------------------------------------------------------------
 $('btn-log').onclick = () => {
-  const rows = FISH.filter((s) => save.log[s.id]).map((s) => { const r = save.log[s.id]; const j = r.max * 2; return `<tr><td>${s.name}</td><td>${r.n}</td><td>${j.toFixed(j < 2 ? 2 : 1)} 斤</td></tr>`; });
-  const seen = rows.length;
-  $('log-body').innerHTML = rows.join('') || '<tr><td class="dim" colspan="3">还没有渔获，去甩一竿吧。</td></tr>';
-  $('log-sum').textContent = `一共 ${$('count').textContent} 条，见过 ${seen} / ${FISH.length} 种鱼。`;
+  const known = FISH.filter((s) => save.log[s.id]).length;
+  $('dex').innerHTML = FISH.map((s) => {
+    const r = save.log[s.id], tag = s.legend ? '<span class="tag">传说</span>' : s.rare ? '<span class="tag">稀有</span>' : '';
+    if (!r) {
+      const best = Object.entries(s.bait).sort((a, b) => b[1] - a[1])[0];
+      return `<div class="dexi unk"><b>？？？${tag}</b>${s.hint || `试试用${baitDef(best[0]).name}`}</div>`;
+    }
+    return `<div class="dexi"><b><i style="background:${s.color[1]}"></i>${s.name}${tag}</b>${r.n} 条 · 最大 ${jinStr(r.max)}<br>每斤约 ${s.p} 金币</div>`;
+  }).join('');
+  $('log-sum').textContent = `一共钓了 ${totalCaught()} 条，认识 ${known} / ${FISH.length} 种鱼。`;
   $('logp').hidden = false;
 };
 $('btn-log-ok').onclick = () => { $('logp').hidden = true; };
@@ -718,7 +1172,7 @@ function resize() {
 }
 addEventListener('resize', resize); resize();
 camera.position.set(0, 1.75, -5.2);
-refreshTop();
+applySpot(save.spot); applyRodLook(); ensureDaily(); refreshTop(); renderMenu();
 
 let last = performance.now(), birdT = 3, camPitch = -0.1;
 function frame(now) {
@@ -735,7 +1189,18 @@ function frame(now) {
   camera.rotation.set(camPitch + Math.sin(clock * 0.7) * 0.004, yaw, 0, 'YXZ');
   camera.updateMatrixWorld();
   if (msgT > 0) { msgT -= dt; if (msgT <= 0) ui.msg.classList.remove('show'); }
-  birdT -= dt; if (birdT <= 0) { birdT = 4 + Math.random() * 9; if (state !== 'menu') { sfx.bird(); if (Math.random() < 0.5) setTimeout(sfx.bird, 220); } }
+  birdT -= dt; if (birdT <= 0) { birdT = 4 + Math.random() * 9; if (state !== 'menu' && !SPOTS[save.spot].night) { sfx.bird(); if (Math.random() < 0.5) setTimeout(sfx.bird, 220); } }
+  updateFlies();
+  // the clock in a timed match
+  if (mode === 'timed' && state !== 'over' && state !== 'menu') {
+    timeLeft = Math.max(0, timeLeft - dt);
+    const s = Math.ceil(timeLeft); $('time').textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    $('timer').classList.toggle('low', timeLeft < 30);
+    if (timeLeft <= 0) {
+      if (['idle', 'charge', 'fly', 'wait', 'bite'].includes(state)) endTimed();
+      else if (!lastCall && (state === 'fight' || state === 'lift')) { lastCall = true; toast('时间到！拉上这条就结束'); }
+    }
+  }
 
   let bend = 0.05, side = 0, lift = 0;
   const target = new THREE.Vector3();
@@ -752,14 +1217,12 @@ function frame(now) {
   } else if (state === 'wait') {
     waitT += dt;
     // the float rides the ripples; nibbles dip it, the bite drags it under
-    let dip = 0;
     if (waitT > nextNibble && nibbles < 3) {
-      nibbles++; nextNibble = waitT + 1.2 + Math.random() * 2.5;
+      nibbles++; nextNibble = waitT + (1.2 + Math.random() * 2.5) * (chumLeft > 0 ? 0.7 : 1);
       ripple(castTo.x, castTo.z, 0.35); buzz(15);
       if (nibbles >= 2 && Math.random() < 0.55 || nibbles === 3) { state = 'bite'; biteT = 0; setMain('提 竿 ！', 'alert'); buzz([120, 60, 120]); ripple(castTo.x, castTo.z, 1); sfx.splash(0.25); }
     }
-    const since = waitT - (nextNibble - 1.2 - 0.0);
-    dip = nibbles > 0 && waitT < nextNibble - 0.9 ? Math.max(0, Math.sin((nextNibble - waitT - 0.9) * 10)) * 0.04 : 0; void since;
+    const dip = nibbles > 0 && waitT < nextNibble - 0.9 ? Math.max(0, Math.sin((nextNibble - waitT - 0.9) * 10)) * 0.04 : 0;
     float.position.set(castTo.x, Math.sin(clock * 2.1) * 0.008 - dip, castTo.z);
   } else if (state === 'bite') {
     biteT += dt;
@@ -767,51 +1230,74 @@ function frame(now) {
     bend = 0.18;
     if (biteT > 1.3) { ui.main.classList.remove('alert'); say('慢了一步', '鱼把饵吃了跑了'); toIdle(); }
   } else if (state === 'fight') {
-    const c = current, k = c.strength;
+    const c = current, k = c.strength / rodDef().power, maxT = lineDef().max;
     // fish behaviour: runs (pulling hard, line goes out) and rests
-    F.run -= dt; if (F.run <= 0) { const running = F.runDir === 0; F.run = running ? 1 + Math.random() * 2.2 * F.stamina : 0.8 + Math.random() * 1.5; F.runDir = running ? (Math.random() < 0.5 ? -1 : 1) : 0; }
+    F.run -= dt;
+    if (F.run <= 0) { const running = F.runDir === 0 && !c.junk; F.run = running ? 1 + Math.random() * 2.2 * F.stamina : 0.8 + Math.random() * 1.5; F.runDir = running ? (Math.random() < 0.5 ? -1 : 1) : 0; }
+    // now and then it leaps clear of the water: hold on through that and the line goes
+    const wasJump = F.jumpT > 0;
+    if (F.jumpT > 0) F.jumpT -= dt;
+    else if (!c.junk && F.runDir !== 0 && F.stamina > 0.2 && Math.random() < dt * 0.2 * Math.min(1.6, k + 0.35)) {
+      F.jumpT = 0.95; splashAt(F.pos.x, F.pos.z, 30, 2.6); sfx.splash(0.9); buzz(50);
+      ui.hint.textContent = '鱼跳出水了！快松手，不然线会崩';
+    }
+    const jumping = F.jumpT > 0;
+    if (wasJump && !jumping) { splashAt(F.pos.x, F.pos.z, 36, 2.2); sfx.splash(0.8); ui.hint.textContent = '拉力太大线会断，太松鱼会脱钩。鱼冲的时候松一松手'; }
     const pulling = F.runDir !== 0 ? (0.45 + 0.55 * F.stamina) * k : 0.12 * k;
     const reel = holding ? 1 : 0;
     // tension: reeling against a running fish spikes it; letting go relaxes it
-    const want = Math.min(1.3, reel * (0.32 + pulling * 0.85) + (1 - reel) * pulling * 0.25);
+    const want = Math.min(1.6, reel * (0.32 + pulling * 0.85 + (jumping ? 0.6 : 0)) + (1 - reel) * pulling * 0.25);
     F.tension += (want - F.tension) * Math.min(1, dt * 4);
     // line in / out
-    const inSpeed = reel * (2.4 - pulling * 1.6);
+    const inSpeed = reel * (2.4 - pulling * 1.6) * rodDef().reel;
     const outSpeed = F.runDir !== 0 ? (1 - reel * 0.6) * 2.2 * k * F.stamina : 0;
     F.dist = Math.max(0, F.dist - inSpeed * dt + outSpeed * dt);
     F.stamina = Math.max(0, F.stamina - dt * (0.035 + F.tension * 0.06) / Math.max(0.5, k));
     F.angle += F.runDir * dt * 0.5 * k; F.angle = Math.max(-0.9, Math.min(0.9, F.angle));
     const a = yaw + F.angle; F.pos.set(camera.position.x - Math.sin(a) * F.dist, -0.6 - Math.min(1.5, F.dist * 0.05), camera.position.z - Math.cos(a) * F.dist);
+    // the fish in the air during a jump
+    if (F.mesh) {
+      F.mesh.visible = jumping;
+      if (jumping) {
+        const u = 1 - F.jumpT / 0.95, L = F.mesh.userData.L;
+        F.mesh.position.set(F.pos.x, Math.sin(u * Math.PI) * (0.6 + L * 1.6) - 0.1, F.pos.z);
+        F.mesh.rotation.set(0, yaw + 0.35, (0.5 - u) * 1.8);
+        F.mesh.userData.tail.rotation.y = Math.sin(clock * 30) * 0.6;
+      }
+    }
     // failure: too tight for too long / far too slack while it runs / ran out of line
-    if (F.tension > 0.98) F.over += dt; else F.over = Math.max(0, F.over - dt * 2);
+    if (F.tension > maxT) F.over += dt * (jumping ? 1.6 : 1); else F.over = Math.max(0, F.over - dt * 2);
     if (F.tension < 0.1 && F.runDir !== 0) F.slack += dt; else F.slack = Math.max(0, F.slack - dt);
     if (F.over > 0.9) lose('snap');
     else if (F.slack > 3.2 || F.dist > 60) lose('slip');
     else if (F.dist < 3.2) landFish();
     // thrashing at the surface now and then
-    if (Math.random() < dt * (F.runDir ? 1.2 : 0.3) * k) { splashAt(F.pos.x, F.pos.z, 10 + Math.round(10 * k), 1.6); sfx.splash(0.3); }
+    if (!jumping && Math.random() < dt * (F.runDir ? 1.2 : 0.3) * k) { splashAt(F.pos.x, F.pos.z, 10 + Math.round(10 * k), 1.6); sfx.splash(0.3); }
     if (holding && Math.random() < dt * 18) { sfx.click(); crank.rotation.x += 0.9; }
-    if (F.tension > 0.85 && Math.random() < dt * 6) buzz(20);
-    ui.fill.style.width = `${Math.min(100, F.tension * 100)}%`;
-    ui.fill.className = 'fill' + (F.tension > 0.9 ? ' danger' : F.tension > 0.75 ? ' warn' : '');
+    const ratio = F.tension / maxT;
+    if (ratio > 0.85 && Math.random() < dt * 6) buzz(20);
+    ui.fill.style.width = `${Math.min(100, ratio * 100)}%`;
+    ui.fill.className = 'fill' + (ratio > 0.92 ? ' danger' : ratio > 0.78 ? ' warn' : '');
     ui.mr.textContent = `${F.dist.toFixed(1)} 米`;
-    bend = 0.15 + F.tension * 0.55; side = Math.sin(F.angle) * F.tension * 0.4;
+    ui.stam.style.width = `${F.stamina * 100}%`;
+    bend = 0.15 + Math.min(1.2, F.tension) * 0.55; side = Math.sin(F.angle) * F.tension * 0.4;
   } else if (state === 'lift') {
-    // lift the fish out of the water and dangle it in front of you
-    F.liftT += dt; const u = Math.min(1, F.liftT / 1.2);
+    // lift the catch out of the water and dangle it in front of you
+    F.liftT += dt; const u = Math.min(1, F.liftT / 1.2), junk = F.mesh.userData.junk;
     target.set(0.0, 0.2 + current.cm * 0.002, -1.0 - current.cm * 0.004); camera.localToWorld(target);
     F.mesh.position.lerpVectors(F.pos, target, u * u * (3 - 2 * u));
-    F.mesh.rotation.set(0, yaw + 0.35 + Math.sin(clock * 3) * 0.25, Math.PI / 2 * 0.92 + Math.sin(clock * 9) * 0.22 * (1 - u * 0.5));
+    F.mesh.rotation.set(0, yaw + 0.35 + Math.sin(clock * 3) * 0.25, junk ? Math.sin(clock * 4) * 0.2 : Math.PI / 2 * 0.92 + Math.sin(clock * 9) * 0.22 * (1 - u * 0.5));
     F.mesh.userData.tail.rotation.y = Math.sin(clock * 14) * 0.5;
     bend = 0.35; lift = 0.25 * u;
     if (u >= 1 && F.liftT > 1.6) showCatch();
   } else if (state === 'result' && F.mesh) {
-    F.mesh.rotation.y = yaw + 0.35 + Math.sin(clock * 1.5) * 0.35; F.mesh.rotation.z = Math.PI / 2 * 0.92 + Math.sin(clock * 5) * 0.1; F.mesh.userData.tail.rotation.y = Math.sin(clock * 9) * 0.35; bend = 0.3; lift = 0.25;
+    const junk = F.mesh.userData.junk;
+    F.mesh.rotation.y = yaw + 0.35 + Math.sin(clock * 1.5) * 0.35; F.mesh.rotation.z = junk ? Math.sin(clock * 2) * 0.12 : Math.PI / 2 * 0.92 + Math.sin(clock * 5) * 0.1; F.mesh.userData.tail.rotation.y = Math.sin(clock * 9) * 0.35; bend = 0.3; lift = 0.25;
   }
   updateRod(bend, side, lift);
   // line from the rod tip to the float / fish
   if (line.visible) {
-    if (state === 'fight') drawLine(tipWorld, F.pos, 0.05 + (1 - Math.min(1, F.tension)) * 0.6);
+    if (state === 'fight') drawLine(tipWorld, F.jumpT > 0 && F.mesh ? F.mesh.position : F.pos, 0.05 + (1 - Math.min(1, F.tension)) * 0.6);
     else if (state === 'lift' || (state === 'result' && F.mesh)) { const m = F.mesh.position.clone(); m.y += F.mesh.userData.L * 0.1; drawLine(tipWorld, m, 0.02); }
     else drawLine(tipWorld, float.position, state === 'fly' ? 0.1 : 0.5);
   }
@@ -822,6 +1308,9 @@ function frame(now) {
   renderer.render(scene, camera);
 }
 requestAnimationFrame(frame);
-window.__fish = { get state() { return state; }, get F() { return F; }, bite() { nextNibble = waitT; nibbles = 2; },
-  showAll() { FISH.forEach((sp, i) => { const f = makeFish(sp, 0.35); const t = new THREE.Vector3(((i % 5) - 2) * 0.42, (i < 5 ? 0.28 : -0.12), -1.6); camera.localToWorld(t); f.position.copy(t); f.rotation.set(0, yaw, 0); scene.add(f); }); } };
+window.__fish = { get state() { return state; }, get F() { return F; }, get save() { return save; }, get timed() { return timed; },
+  bite() { nextNibble = waitT; nibbles = 2; }, force(id) { forceNext = id; }, give(n) { save.coins += n; persist(); refreshTop(); }, xp(n) { gainXP(n); persist(); },
+  spot(id) { save.spot = id; applySpot(id); }, time(t) { timeLeft = t; }, end() { F.dist = 2; F.stamina = 0; },
+  showAll() { FISH.forEach((sp, i) => { const f = makeFish(sp, 0.32); const t = new THREE.Vector3(((i % 5) - 2) * 0.4, 0.34 - Math.floor(i / 5) * 0.32, -1.6); camera.localToWorld(t); f.position.copy(t); f.rotation.set(0, yaw, 0); scene.add(f); }); } };
 </script>
+
